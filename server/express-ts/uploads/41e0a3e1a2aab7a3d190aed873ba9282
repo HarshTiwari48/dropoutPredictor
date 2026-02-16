@@ -1,0 +1,11 @@
+Name,Marital status,Application mode,Application order,Course,Daytime/evening attendance,Previous qualification,Nationality,Mother's qualification,Father's qualification,Mother's occupation,Father's occupation,Displaced,Educational special needs,Debtor,Tuition fees up to date,Gender,Scholarship holder,Age,International,Curricular units 1st sem (credited),Curricular units 1st sem (enrolled),Curricular units 1st sem (evaluations),Curricular units 1st sem (approved),Curricular units 1st sem (grade),Curricular units 1st sem (without evaluations),Curricular units 2nd sem (credited),Curricular units 2nd sem (enrolled),Curricular units 2nd sem (evaluations),Curricular units 2nd sem (approved),Curricular units 2nd sem (grade),Curricular units 2nd sem (without evaluations),Unemployment rate,Inflation rate,GDP,Email
+Aarav Sharma,1,9,2,7,1,1,1,1,2,6,5,1,0,0,1,1,0,18,0,0,5,7,5,12.6,0,0,5,9,3,13.25,0,13.9,-0.3,0.79,aarav.sharma@gmail.com
+Riya Verma,1,1,4,10,1,1,1,1,28,10,8,1,0,0,1,0,1,19,0,0,6,6,6,13.5,0,0,6,7,6,13.428571428571429,0,11.1,0.6,2.02,riya.verma@gmail.com
+Kunal Mehta,1,1,1,3,0,1,1,23,14,7,11,0,0,0,1,0,1,23,0,0,6,6,6,14.166666666666666,0,0,6,6,6,12.5,0,12.7,3.7,-1.7,kunal.mehta@gmail.com
+Ananya Gupta,1,1,1,16,1,1,1,1,28,6,11,1,0,0,1,0,0,20,0,0,6,9,5,14.333333333333334,0,4,8,8,8,12.625,0,15.5,2.8,-4.06,ananya.gupta@gmail.com
+Rohit Singh,1,1,2,5,1,1,1,1,14,4,4,1,0,0,0,0,0,18,0,1,6,8,6,11.714285714285714,1,0,6,11,4,11.333333333333334,0,13.9,-0.3,0.79,rohit.singh@gmail.com
+Neha Kapoor,1,9,2,16,1,1,1,1,3,10,3,1,0,1,0,0,0,20,0,0,6,11,5,13.2,0,0,6,8,4,10.75,0,10.8,1.4,1.74,neha.kapoor@gmail.com
+Aditya Jain,5,12,1,4,1,12,1,13,1,10,10,0,0,1,0,0,0,27,0,0,6,6,0,0.0,0,0,6,7,0,0.0,0,8.9,1.4,3.51,aditya.jain@gmail.com
+Pooja Malhotra,1,1,3,12,1,1,1,13,14,6,9,1,0,0,1,0,1,18,0,0,7,9,7,13.2375,0,0,8,9,7,13.742857142857144,0,13.9,-0.3,0.79,pooja.malhotra@gmail.com
+Siddharth Rao,1,1,5,5,1,1,1,3,3,3,3,1,0,0,1,1,0,22,0,0,6,6,6,14.666666666666666,0,0,6,6,6,15.0,0,9.4,-0.8,-3.12,siddharth.rao@gmail.com
+Ishita Nair,1,8,5,14,1,1,1,13,14,6,6,1,0,0,1,1,0,21,0,0,6,6,6,15.166666666666666,0,0,6,9,6,14.0,0,10.8,1.4,1.74,ishita.nair@gmail.com
