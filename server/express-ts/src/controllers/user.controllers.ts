@@ -80,8 +80,8 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
     .status(200)
     .cookie("token", token, {
       httpOnly: true,
-      secure: false, // true in production (remember to do this)
-      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production", // true in production (remember to do this)
+      sameSite: "none",
     })
     .json(
       new ApiResponse(
