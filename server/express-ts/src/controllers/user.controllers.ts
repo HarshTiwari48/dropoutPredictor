@@ -44,7 +44,7 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
     .status(201)
     .cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // true in production
+      secure: true, // true in production
       sameSite: "none",
     })
     .json(
@@ -80,7 +80,7 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
     .status(200)
     .cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // true in production (remember to do this)
+      secure: true, // true in production (remember to do this)
       sameSite: "none",
     })
     .json(
