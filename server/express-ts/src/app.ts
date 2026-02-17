@@ -12,10 +12,15 @@ app.set("trust proxy", 1);
 // CORS
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: "https://elewareprime.vercel.app",
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.options("*", cors());
+
+
 
 //cookie
 app.use(cookieParser())
