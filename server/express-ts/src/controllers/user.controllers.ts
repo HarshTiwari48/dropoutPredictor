@@ -95,10 +95,16 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
 //  LOGOUT 
 export const logoutUser = asyncHandler(async (_req: Request, res: Response) => {
   res
-    .clearCookie("token")
+    .clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      path: "/", // important
+    })
     .status(200)
     .json(new ApiResponse(200, null, "Logout successful"));
 });
+
 
 
 //  GetCurrent User  
