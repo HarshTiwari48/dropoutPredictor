@@ -4,7 +4,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { ApiError } from "../utils/ApiError";
 import { env } from "../constants";
 
-// extend Request type to include user (learn this better)
+// extend Request type to include user
 export interface AuthRequest extends Request {
   user?: {
     id: string;
@@ -18,11 +18,13 @@ export const verifyJWT = (
   _res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies?.token;
+  const authHeader = req.headers.authorization;
 
-  if (!token) {
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw new ApiError(401, "Unauthorized request");
   }
+
+  const token = authHeader.split(" ")[1];
 
   try {
     const decoded = jwt.verify(token, env.jwt.secret) as JwtPayload;
