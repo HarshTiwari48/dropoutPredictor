@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import jwt, {SignOptions} from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 
 import User from "../models/user.model";
 import { ApiError } from "../utils/ApiError";
@@ -38,23 +38,26 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
 
   const user = await User.create({ email, password, role });
 
-  const token = generateToken(user._id.toString(), user.role, user.email);
+  const token = generateToken(
+    user._id.toString(),
+    user.role,
+    user.email
+  );
 
-  res
-    .status(201)
-    .cookie("token", token, {
-      httpOnly: true,
-      secure: true, // true in production
-      sameSite: "none",
-    })
-    .json(
-      new ApiResponse(
-        201,
-        { id: user._id, email: user.email, role: user.role },
-        "User registered successfully"
-      )
-    );
+  return res.status(201).json(
+    new ApiResponse(
+      201,
+      {
+        id: user._id,
+        email: user.email,
+        role: user.role,
+        token, // 🔥 returning token instead of cookie
+      },
+      "User registered successfully"
+    )
+  );
 });
+
 
 //  LOGIN 
 export const loginUser = asyncHandler(async (req: Request, res: Response) => {
@@ -74,43 +77,39 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(401, "Invalid credentials");
   }
 
-  const token = generateToken(user._id.toString(), user.role, user.email);
+  const token = generateToken(
+    user._id.toString(),
+    user.role,
+    user.email
+  );
 
-  res
-    .status(200)
-    .cookie("token", token, {
-      httpOnly: true,
-      secure: true, // true in production (remember to do this)
-      sameSite: "none",
-    })
-    .json(
-      new ApiResponse(
-        200,
-        { id: user._id, email: user.email, role: user.role },
-        "Login successful"
-      )
-    );
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        id: user._id,
+        email: user.email,
+        role: user.role,
+        token, // 🔥 returning token instead of cookie
+      },
+      "Login successful"
+    )
+  );
 });
 
+
 //  LOGOUT 
+// Logout is now frontend-only (just delete token from localStorage)
 export const logoutUser = asyncHandler(async (_req: Request, res: Response) => {
-  res
-    .clearCookie("token", {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      path: "/", // important
-    })
+  return res
     .status(200)
     .json(new ApiResponse(200, null, "Logout successful"));
 });
 
 
-
 //  GetCurrent User  
 export const getCurrentUser = asyncHandler(
   async (req: AuthRequest, res: Response) => {
-    // req.user is set by auth middleware
     const user = req.user;
 
     return res.status(200).json(
