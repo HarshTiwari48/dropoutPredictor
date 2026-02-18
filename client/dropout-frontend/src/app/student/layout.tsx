@@ -10,7 +10,11 @@ export default function StudentLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { isAuthenticated, loading, user } = useAuthStore();
+  const { isAuthenticated, loading, user, fetchMe } = useAuthStore();
+
+  useEffect(() => {
+    fetchMe();
+  }, [fetchMe]);
 
   useEffect(() => {
     if (!loading) {
@@ -23,7 +27,7 @@ export default function StudentLayout({
   }, [loading, isAuthenticated, user, router]);
 
   if (loading || !isAuthenticated || user?.role !== "STUDENT") {
-    return null; // later add spinner
+    return null;
   }
 
   return <>{children}</>;

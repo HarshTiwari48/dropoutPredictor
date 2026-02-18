@@ -19,7 +19,6 @@ interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
 
-  // actions
   register: (data: {
     email: string;
     password: string;
@@ -41,14 +40,18 @@ export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
   loading: false,
 
-  //  REGISTER 
+  // REGISTER
   register: async (data) => {
     set({ loading: true });
     try {
       const res = await registerUser(data);
 
+      const { token, ...userData } = res.data;
+
+      localStorage.setItem("token", token);
+
       set({
-        user: res.data,
+        user: userData,
         isAuthenticated: true,
         loading: false,
       });
@@ -58,14 +61,18 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  //  LOGIN 
+  // LOGIN
   login: async (data) => {
     set({ loading: true });
     try {
       const res = await loginUser(data);
 
+      const { token, ...userData } = res.data;
+
+      localStorage.setItem("token", token);
+
       set({
-        user: res.data,
+        user: userData,
         isAuthenticated: true,
         loading: false,
       });
@@ -75,11 +82,13 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  //  LOGOUT 
+  // LOGOUT
   logout: async () => {
     set({ loading: true });
     try {
       await logoutUser();
+
+      localStorage.removeItem("token");
 
       set({
         user: null,
@@ -92,9 +101,21 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  //  FETCH CURRENT USER 
+  // FETCH CURRENT USER
   fetchMe: async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      set({
+        user: null,
+        isAuthenticated: false,
+        loading: false,
+      });
+      return;
+    }
+
     set({ loading: true });
+
     try {
       const res = await getCurrentUser();
 
@@ -104,7 +125,8 @@ export const useAuthStore = create<AuthState>((set) => ({
         loading: false,
       });
     } catch {
-      // not logged in
+      localStorage.removeItem("token");
+
       set({
         user: null,
         isAuthenticated: false,

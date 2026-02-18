@@ -23,10 +23,13 @@ export default function LoginPage() {
   try {
     await login({ email, password });
 
+    router.push("/student"); 
+
   } catch (error) {
     console.error("Login failed", error);
   }
 };
+
 
 
   return (
