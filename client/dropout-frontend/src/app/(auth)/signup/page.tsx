@@ -96,6 +96,9 @@ export default function SignupPage() {
         </CardContent>
       </Card>
 
+      <br />
+      <br />
+
           <p className="text-center text-sm text-slate-400 mt-2">
           Want admin access?{" "}
             <span
