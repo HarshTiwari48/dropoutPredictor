@@ -37,3 +37,13 @@ export const getCurrentUser = async () => {
   const res = await api.get("/users/me");
   return res.data;
 };
+
+// REQUEST ADMIN ACCESS
+export const requestAdminAccess = async (data: {
+  name: string;
+  email: string;
+  reason: string;
+}) => {
+  const res = await api.post("/users/request-admin", data);
+  return res.data;
+};

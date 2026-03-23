@@ -95,6 +95,16 @@ export default function SignupPage() {
           </form>
         </CardContent>
       </Card>
+
+          <p className="text-center text-sm text-slate-400 mt-2">
+          Want admin access?{" "}
+            <span
+          onClick={() => router.push("/request-admin")}
+          className="cursor-pointer text-indigo-400 hover:underline"
+            >
+              Request Admin Access
+            </span>
+          </p>
       </div>
   );
 }
