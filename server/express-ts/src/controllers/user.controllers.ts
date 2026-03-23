@@ -125,3 +125,28 @@ export const getCurrentUser = asyncHandler(
     );
   }
 );
+
+// emailing option for admin
+export const requestAdminAccess = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { name, email, reason } = req.body;
+
+    if (!name || !email || !reason) {
+      throw new ApiError(400, "All fields are required");
+    }
+
+    console.log("🟡 Admin Access Request:", {
+      name,
+      email,
+      reason,
+    });
+
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        null,
+        "Admin access request submitted successfully"
+      )
+    );
+  }
+);
