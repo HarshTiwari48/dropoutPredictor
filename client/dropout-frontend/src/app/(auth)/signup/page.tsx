@@ -32,7 +32,7 @@ export default function SignupPage() {
 
   
 
-    <div className="min-h-screen relative h-125 w-full overflow-hidden flex items-center justify-center bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 px-4">
+    <div className="min-h-screen relative h-125 w-full overflow-hidden flex flex-col items-center justify-center bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 px-4">
       
       <Meteors maxDuration={10} number={20} />
       <Card className="w-full max-w-md border-slate-800 bg-slate-900/70 backdrop-blur">
