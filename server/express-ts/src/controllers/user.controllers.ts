@@ -7,6 +7,7 @@ import { ApiResponse } from "../utils/ApiResponse";
 import { asyncHandler } from "../utils/AsyncHandler";
 import { env } from "../constants";
 import { AuthRequest } from "../middlewares/auth.middlewares";
+import { sendMail } from "../services/mail.services";
 
 // helper
 const generateToken = (userId: string, role: string, email: string) => {
@@ -135,17 +136,24 @@ export const requestAdminAccess = asyncHandler(
       throw new ApiError(400, "All fields are required");
     }
 
-    console.log("🟡 Admin Access Request:", {
-      name,
-      email,
-      reason,
+    // 📩 Send email to admin
+    await sendMail({
+      to: process.env.MAIL_USER as string, // you receive it
+      subject: "New Admin Access Request",
+      html: `
+        <h2>New Admin Access Request</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Reason:</strong></p>
+        <p>${reason}</p>
+      `,
     });
 
     return res.status(200).json(
       new ApiResponse(
         200,
         null,
-        "Admin access request submitted successfully"
+        "Admin access request sent successfully"
       )
     );
   }
