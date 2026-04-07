@@ -4,6 +4,8 @@ An AI-powered web application designed to **identify students at risk of droppin
 
 This system bridges **data-driven insights** with **human intervention**, helping institutions take preventive action instead of reactive measures.
 
+LIVE: https://elewareprime.vercel.app/
+
 
 ---
 
